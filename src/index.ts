@@ -5,20 +5,31 @@ import {
   AppleMusicResponse,
   BingImageResponse,
   BingSearchResponse,
+  ChannelInfoResponse,
+  CountryResponse,
   DeezerResponse,
+  EmojiInfoResponse,
   GImageResponse,
   GeniusSearchResponse,
   GoogleSearchResponse,
+  HTMLExtractResponse,
   LyricsResponse,
+  MixedEmojiResponse,
+  MojitoResponse,
   MovieResponse,
   NPMResponse,
+  NoticiasResponse,
   PinterestImageResponse,
   Rule34Response,
+  SimiResponse,
   SoundCloudResponse,
   SpotifySearchResponse,
   TenorResponse,
   TikTokSearchResponse,
+  TikTokStalkResponse,
   TrackResponse,
+  TranslationResponse,
+  URLCheckResponse,
   YouTubeSearchResponse
 } from '../types/apidelirius'
 
@@ -391,7 +402,7 @@ async function soundcloudSearch(query: string): Promise<SoundCloudResponse> {
  * @returns Una promesa que se resuelve con la respuesta de la API de Deezer.
  * @example
  * // Realiza una búsqueda de la pista "Feel Special" en Deezer
- * const result = await getDeezerTracks("Feel special");
+ * const result = await deezerSearch("Feel special");
  * console.log(result);
  */
 async function deezerSearch(query: string): Promise<DeezerResponse> {
@@ -411,7 +422,7 @@ async function deezerSearch(query: string): Promise<DeezerResponse> {
  * @returns Una promesa que se resuelve con la respuesta de la API de Tenor.
  * @example
  * // Buscar GIFs de Nayeon de TWICE en Tenor
- * const gifs = await getTenorGIFs('Nayeon TWICE');
+ * const gifs = await tenorSearch('Nayeon TWICE');
  * console.log(gifs);
  */
 async function tenorSearch(query: string): Promise<TenorResponse> {
@@ -432,7 +443,7 @@ async function tenorSearch(query: string): Promise<TenorResponse> {
  * @returns Una promesa que se resuelve con la respuesta de la API de npm.
  * @example
  * // Buscar paquetes relacionados con "axios" en npm
- * const packages = await searchNPM('axios', 20);
+ * const packages = await searchNpmjs('axios', 20);
  * console.log(packages);
  */
 async function searchNpmjs(
@@ -471,6 +482,316 @@ async function searchAppStore(
   }
 }
 
+// TOOLS
+
+/**
+ * Makes a GET request to the URL verification tool API to check a specific URL.
+ * @param url The URL to check.
+ * @returns A promise that resolves with the response from the URL verification tool API.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Check the URL "https://delirius-api-oficial.vercel.app/docs"
+ * const checkResult = await checkURL('https://delirius-api-oficial.vercel.app/docs');
+ * console.log(checkResult);
+ */
+async function checkUrl(url: string): Promise<URLCheckResponse> {
+  try {
+    const response: AxiosResponse<URLCheckResponse> = await axios.get(
+      `https://delirios-api-delta.vercel.app/tools/checkurl?url=${url}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to the HTML extraction tool API to extract HTML content from a specific URL.
+ * @param url The URL from which to extract HTML content.
+ * @returns A promise that resolves with the response from the HTML extraction tool API.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Extract HTML content from the URL "https://delirios-api-delta.vercel.app"
+ * const htmlContent = await extractHTML('https://delirios-api-delta.vercel.app');
+ * console.log(htmlContent);
+ */
+async function extractHTML(url: string): Promise<HTMLExtractResponse> {
+  try {
+    const response: AxiosResponse<HTMLExtractResponse> = await axios.get(
+      `https://delirios-api-delta.vercel.app/tools/htmlextract?url=${url}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Performs a GET request to the translation API to translate the specified text.
+ * @param text The text to be translated.
+ * @param language The target language for translation (e.g., "en" for English).
+ * @returns A promise that resolves with the translation response from the API.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Translate the text "Hola, bienvenido a la api oficial de Delirius Bot" to English
+ * const translation = await translate("Hola, bienvenido a la api oficial de Delirius Bot", "en");
+ * console.log(translation);
+ */
+async function translate(
+  text: string,
+  language: string
+): Promise<TranslationResponse> {
+  try {
+    const response: AxiosResponse<TranslationResponse> = await axios.get(
+      `https://delirios-api-delta.vercel.app/tools/translate?text=${encodeURIComponent(
+        text
+      )}&language=${language}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Perform a request to the Mojito API to generate an ASCII art representation of the specified emoji.
+ * @param emoji The emoji for which to generate ASCII art representation.
+ * @returns A promise that resolves with the ASCII art representation of the emoji.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Generate ASCII art representation for the 😀 emoji
+ * const asciiArt = await generateEmojiArt("😀");
+ * console.log(asciiArt);
+ */
+async function emojito(
+  emoji: string
+): Promise<MojitoResponse | undefined | null> {
+  try {
+    const response: AxiosResponse<MojitoResponse> = await axios.get(
+      `https://delirios-api-delta.vercel.app/tools/mojito?emoji=${encodeURIComponent(
+        emoji
+      )}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to the Simi API to generate a response for the given text.
+ * @param text The text for which a response is to be generated.
+ * @returns A promise that resolves with the response from the Simi API.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Generate a response for the text "Causa"
+ * const simiResponse = await simisimi("Hola");
+ * console.log(simiResponse);
+ */
+async function simisimi(text: string): Promise<SimiResponse> {
+  try {
+    const response: AxiosResponse<SimiResponse> = await axios.get(
+      `https://controlled-gae-deliriusapi.koyeb.app/api/simi?text=${text}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Fetches headline stories from the news API with the given language and country.
+ * @param language The language of the news (default: 'es' for Spanish).
+ * @param country The country for the news (default: 'PE' for Peru).
+ * @returns A promise that resolves with the response containing the headline stories.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Fetch headline stories in Spanish from Peru
+ * const noticias = await googleNews();
+ * console.log(noticias);
+ * @example
+ * // Fetch headline stories in English from United States
+ * const noticias = await googleNews('en', 'US');
+ * console.log(noticias);
+ */
+async function googleNews(
+  language: string = 'es',
+  country: string = 'PE'
+): Promise<NoticiasResponse> {
+  try {
+    const response: AxiosResponse<NoticiasResponse> = await axios.get(
+      `https://controlled-gae-deliriusapi.koyeb.app/api/noticias?language=${language}&country=${country}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to the TikTok Stalk API to retrieve profile information for a given username.
+ * @param username The TikTok username to retrieve information for.
+ * @returns A promise that resolves with the profile information from the TikTok Stalk API.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Retrieve profile information for the TikTok username "twice_tiktok_official"
+ * const tikTokProfile = await tiktokStalk("twice_tiktok_official");
+ * console.log(tikTokProfile);
+ */
+async function tiktokStalk(username: string): Promise<TikTokStalkResponse> {
+  try {
+    const response = await axios.get<TikTokStalkResponse>(
+      `https://delirios-api-delta.vercel.app/tools/tiktokstalk?q=${encodeURIComponent(
+        username
+      )}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to the Mixed Emoji API to generate an image from two mixed emojis.
+ * @param emoji1 The first emoji.
+ * @param emoji2 The second emoji.
+ * @returns A promise that resolves with the URL of the generated image.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Generate an image from the emojis 😝 and 😊
+ * const imageUrl = await emojiMix("😝", "😊");
+ * console.log(imageUrl);
+ */
+async function emojiMix(
+  emoji1: string,
+  emoji2: string
+): Promise<MixedEmojiResponse | null | undefined> {
+  try {
+    const response = await axios.get<MixedEmojiResponse>(
+      `https://delirios-api-delta.vercel.app/tools/mixed?emoji1=${encodeURIComponent(
+        emoji1
+      )}&emoji2=${encodeURIComponent(emoji2)}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to the Channelstalk API to retrieve information about a Telegram channel.
+ * @param channel The username of the Telegram channel.
+ * @returns A promise that resolves with an array of ChannelInfo objects containing information about the channel.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Retrieve information about the channel "deliriuus"
+ * const channelInfo = await telegramStalkChannel("deliriuus");
+ * console.log(channelInfo);
+ */
+async function telegramStalkChannel(
+  channel: string
+): Promise<ChannelInfoResponse> {
+  try {
+    const response = await axios.get<ChannelInfoResponse>(
+      `https://delirios-api-delta.vercel.app/tools/channelstalk?channel=${channel}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to fetch emoji information based on the provided text.
+ * @param text The text representing the emoji.
+ * @returns A promise that resolves with the emoji information.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Get emoji information for 😁
+ * const emojiInfo = await emoji("😁");
+ * console.log(emojiInfo);
+ */
+async function emoji(text: string): Promise<EmojiInfoResponse> {
+  try {
+    const response: AxiosResponse<EmojiInfoResponse> = await axios.get(
+      `https://controlled-gae-deliriusapi.koyeb.app/api/emoji?text=${encodeURIComponent(
+        text
+      )}`
+    )
+    return response.data
+  } catch (error) {
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
+/**
+ * Makes a GET request to the API to retrieve country information based on the phone number.
+ * @param phoneNumber The phone number for which country information is sought.
+ * @returns A promise that resolves with the country information.
+ * @throws Error if there is an error in the request.
+ * @example
+ * // Get country information for the phone number +34 613 28 81 16
+ * const countryInfo = await countryEmoji("+34 613 28 81 16");
+ * console.log(countryInfo);
+ */
+async function countryEmoji(phoneNumber: string): Promise<CountryResponse> {
+  try {
+    const response: AxiosResponse<CountryResponse> = await axios.get(
+      `https://delirius-api-oficial.vercel.app/api/country?text=${encodeURIComponent(
+        phoneNumber
+      )}`
+    )
+    return response.data
+  } catch (error) {
+    // Handling errors
+    if (typeof error === 'string') {
+      throw new Error(error)
+    } else {
+      throw error
+    }
+  }
+}
+
 export {
   geniusSearch,
   searchLyrics,
@@ -491,5 +812,16 @@ export {
   deezerSearch,
   tenorSearch,
   searchNpmjs,
-  searchAppStore
+  searchAppStore,
+  checkUrl,
+  extractHTML,
+  translate,
+  emojito,
+  simisimi,
+  googleNews,
+  tiktokStalk,
+  emojiMix,
+  telegramStalkChannel,
+  emoji,
+  countryEmoji
 }

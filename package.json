@@ -28,7 +28,8 @@
   },
   "scripts": {
     "build": "yarn rimraf dist && yarn tsc",
-    "format": "yarn prettier --write --config .prettierrc.json \"src/**/*.ts\""
+    "format": "yarn prettier --write --config .prettierrc.json \"src/**/*.ts\"",
+    "format2": "yarn prettier --write --config .prettierrc.json \"types/**/*.ts\""
   },
   "dependencies": {
     "axios": "^1.6.7"
