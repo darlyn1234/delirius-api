@@ -36,8 +36,6 @@ interface LyricsResponse {
   lyrics: string;
 }
 
-// types/searchTypes.ts
-
 /**
  * Represents a TikTok video.
  */
