@@ -1,9 +1,8 @@
 <p align="center">
-  <img src="https://i.ibb.co/5jbdSM3/image.jpg" alt="Imagen de perfil" width="400" height="400">
+  <a href="https://github.com/delirius0">
+    <img align="center" src="https://cardgit.vercel.app/api?name=Module%20Docs%20🌵&description=Repositorio%20oficial%20de%20delirius%20module&image=https://i.pinimg.com/564x/a8/c2/5f/a8c25faed580a057f1e52ec1e68e50e0.jpg&usqp=CAU&backgroundColor=%23ecf0f1&instagram=delirius0&github=delirius0&pattern=ticTacToe&colorPattern=%23eaeaea&site=" />
+  </a>
 </p>
-
-
-<h1 align="center">Delirius Module Docs</h1>
 
 This module provides functions to interact with various APIs provided by Delirius. Below you'll find documentation for each function along with usage examples.
 
