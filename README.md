@@ -1,6 +1,76 @@
+<p align="center">
+  <img src="https://i.ibb.co/5jbdSM3/image.jpg" alt="Imagen de perfil" width="400" height="400">
+</p>
+
+
 # Delirius Module Docs
 
 This module provides functions to interact with various APIs provided by Delirius. Below you'll find documentation for each function along with usage examples.
+
+## Search Functions
+
+### 1. `geniusSearch(query: string): Promise<GeniusSearchResponse>`
+
+Searches Genius using the Genius search API.
+
+- **Parameters:**
+  - `query`: The search term to search on Genius.
+- **Returns:** 
+  - A promise that resolves with the Genius search response.
+- **Throws:**
+  - Error if there is an error in the request.
+- **Example:**
+  ```typescript
+  // Search for lyrics by artist and song name
+  const lyrics = await geniusSearch('Taylor Swift Love Story');
+  console.log(lyrics);
+    ```
+
+### 2. `searchLyrics(url: string): Promise<LyricsResponse>`
+
+Performs a GET request to the Genius lyrics search API.
+
+- **Parameters:**
+  - `url`: The URL of the song lyrics on Genius.
+- **Returns:** 
+  - A promise that resolves with the Genius lyrics search response.
+- **Throws:**
+  - Error if there is an error in the request.
+- **Example:**
+  ```typescript
+  // Search for lyrics using the Genius URL
+  const lyrics = await searchLyrics('https://genius.com/Taylor-swift-love-story-lyrics');
+  console.log(lyrics);
+  ```
+
+### 3. `searchTikTok(query: string): Promise<TikTokSearchResponse>`
+
+Performs a GET request to the TikTok video search API.
+
+- **Parameters:**
+  - `query`: The search query to find TikTok videos.
+- **Returns:** 
+  -  A promise that resolves with the TikTok video search response.
+- **Throws:**
+  - Error if there is an error in the request.
+- **Example:**
+  ```typescript
+  // Search for TikTok videos by hashtag
+  const tiktokVideos = await searchTikTok('#dance');
+  console.log(tiktokVideos);
+  ```
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Tools
 
