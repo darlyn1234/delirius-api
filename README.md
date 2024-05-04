@@ -3,7 +3,7 @@
 </p>
 
 
-# Delirius Module Docs
+<h1 align="center">Delirius Module Docs</h1>
 
 This module provides functions to interact with various APIs provided by Delirius. Below you'll find documentation for each function along with usage examples.
 
